@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { PageLoader } from './Components/Global/PageLoader';
+import { PageLoader } from './components/Global/PageLoader';
 import Main from './Routes/Main';
 
 function App() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ProtectedRoute } from '../Components/Global/ProtectedRoute';
+import { ProtectedRoute } from '../components/Global/ProtectedRoute';
 import AddBranch from '../pages/Branchs/AddBranch';
 import ListBranch from '../pages/Branchs/ListBranch';
 import Callback from '../pages/Callback';
