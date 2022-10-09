@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api-generate": "openapi-generator-cli generate -i http://localhost:5000/api  -g typescript-axios -o ./src/api/ --global-property skipFormModel=false"
+    "api-generate": "openapi-generator-cli generate -i http://localhost:5000/docs -g typescript-axios -o ./src/api/ --global-property skipFormModel=false"
   },
   "eslintConfig": {
     "extends": [
