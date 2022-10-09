@@ -1,15 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import ListBranch from './pages/Branchs/ListBranch';
-import AddBranch from './pages/Branchs/AddBranch';
-import { NotFoundPage } from './pages/NotFound';
-import { ProtectedRoute } from './Components/Global/ProtectedRoute';
+import { useAuth0 } from '@auth0/auth0-react';
+
 import { PageLoader } from './Components/Global/PageLoader';
-import Callback from './pages/Callback';
+import Main from './Routes/Main';
 
 function App() {
   const { isLoading } = useAuth0();
@@ -24,22 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<ProtectedRoute component={Home} />} />
-          <Route
-            path="/branchs"
-            element={<ProtectedRoute component={ListBranch} />}
-          />
-          <Route
-            path="/branchs/new"
-            element={<ProtectedRoute component={AddBranch} />}
-          />
-          <Route path="/callback" element={<Callback />} />
-
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
+      <Main />
     </div>
   );
 }
