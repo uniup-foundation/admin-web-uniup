@@ -4,6 +4,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import { PageLoader } from './components/Global/PageLoader';
 import Main from './routes/Main';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+const queryClient = new QueryClient();
 
 function App() {
   const { isLoading } = useAuth0();
@@ -17,9 +20,10 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <QueryClientProvider client={queryClient}>
       <Main />
-    </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
