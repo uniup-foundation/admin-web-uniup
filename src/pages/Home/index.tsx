@@ -10,7 +10,8 @@ export default function Home() {
       <h1>Home</h1>
       <nav>
         <Link to="/branchs">ListBranch</Link> |{' '}
-        <Link to="/branchs/new">Add Branch</Link>
+        <Link to="/branchs/new">Add Branch</Link>|{' '}
+        <Link to="/profile">Profile</Link>
       </nav>
       <button
         onClick={() =>

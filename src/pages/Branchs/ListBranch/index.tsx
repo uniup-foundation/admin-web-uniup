@@ -1,31 +1,38 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import React from 'react';
+import React, { useState } from 'react';
+import { BASE_URL } from '../../../config';
 
 export default function ListBranch() {
   const { getAccessTokenSilently } = useAuth0();
+  const [data, setData] = useState([]);
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = await getAccessTokenSilently({
-          audience: 'localhost:5000/',
-        });
+        const token = await getAccessTokenSilently();
 
-        const response = await fetch(`http://localhost:5000/branchs`, {
+        const response = await fetch(`${BASE_URL}/branchs`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
         const responseData = await response.json();
-
-        alert(responseData.message);
+        setData(responseData);
       } catch (error) {
         const err = error as Error;
         alert(err.message);
       }
     };
     fetchData();
-  }, []);
-
-  return <div>ListBranch</div>;
+  }, [getAccessTokenSilently]);
+  return (
+    <div>
+      <h2>ListBranch</h2>
+      <div>
+        {data?.map((elem: any) => (
+          <h6 key={elem.id}>{elem.name}</h6>
+        ))}
+      </div>
+    </div>
+  );
 }

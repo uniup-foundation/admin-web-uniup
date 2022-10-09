@@ -41,4 +41,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 REACT_APP_AUTH0_DOMAIN=
 REACT_APP_AUTH0_CLIENT_ID=
 REACT_APP_AUTH0_CALLBACK_URL=
+REACT_APP_AUTH0_AUDIENCE=
+REACT_APP_API_URL=
 ```
