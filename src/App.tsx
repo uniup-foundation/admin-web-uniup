@@ -3,7 +3,7 @@ import './App.css';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { PageLoader } from './components/Global/PageLoader';
-import Main from './Routes/Main';
+import Main from './routes/Main';
 
 function App() {
   const { isLoading } = useAuth0();
