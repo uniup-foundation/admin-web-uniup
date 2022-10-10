@@ -1,35 +1,19 @@
 import { useAuth0 } from '@auth0/auth0-react';
+import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { BASE_URL } from '../../../config';
+import useBranchsApi from '../../../hooks/useBranchApi';
 
 export default function ListBranch() {
-  const { getAccessTokenSilently } = useAuth0();
-  const [data, setData] = useState([]);
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-
-        const response = await fetch(`${BASE_URL}/branchs`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const responseData = await response.json();
-        setData(responseData);
-      } catch (error) {
-        const err = error as Error;
-        alert(err.message);
-      }
-    };
-    fetchData();
-  }, [getAccessTokenSilently]);
+  const [branchsApi] = useBranchsApi();
+  const { data } = useQuery(['branchs'], () =>
+    branchsApi.then((branchAPI) => branchAPI.branchsControllerFindAll()),
+  );
   return (
     <div>
       <h2>ListBranch</h2>
       <div>
-        {data?.map((elem: any) => (
+        {data?.data.map((elem: any) => (
           <h6 key={elem.id}>{elem.name}</h6>
         ))}
       </div>
