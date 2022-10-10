@@ -6,10 +6,27 @@ import { PageLoader } from './components/Global/PageLoader';
 import Main from './routes/Main';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import jwt_decode, { JwtPayload } from 'jwt-decode';
+import { useAuth } from './context/AuthContext';
+
 const queryClient = new QueryClient();
 
 function App() {
-  const { isLoading } = useAuth0();
+  const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { setPermissions } = useAuth();
+  React.useEffect(() => {
+    const getPermissions = async () => {
+      if (isAuthenticated) {
+        const token = await getAccessTokenSilently();
+        const decoded = jwt_decode<JwtPayload & { permissions: string[] }>(
+          token,
+        );
+        setPermissions(decoded.permissions);
+      }
+    };
+    getPermissions();
+  }, [isAuthenticated]);
 
   if (isLoading) {
     return (

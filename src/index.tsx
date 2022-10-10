@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import Auth0ProviderWithConfig from './auth/auth0-provider-with-config';
+import { ProviderAuth } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Auth0ProviderWithConfig>
-      <App />
+      <ProviderAuth>
+        <App />
+      </ProviderAuth>
     </Auth0ProviderWithConfig>
   </React.StrictMode>,
 );

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   const { logout } = useAuth0();
-
   return (
     <div>
       <h1>Home</h1>
