@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ProtectedRoute } from '../components/Global/ProtectedRoute';
+import PermissionsList from '../config/permissionsList';
 import AddBranch from '../pages/Branchs/AddBranch';
 import ListBranch from '../pages/Branchs/ListBranch';
 import Callback from '../pages/Callback';
@@ -15,11 +16,21 @@ export default function Main() {
         <Route path="/" element={<ProtectedRoute component={Home} />} />
         <Route
           path="/branchs"
-          element={<ProtectedRoute component={ListBranch} />}
+          element={
+            <ProtectedRoute
+              component={ListBranch}
+              permission={PermissionsList.READ_BRANCHS}
+            />
+          }
         />
         <Route
           path="/branchs/new"
-          element={<ProtectedRoute component={AddBranch} />}
+          element={
+            <ProtectedRoute
+              component={AddBranch}
+              permission={PermissionsList.CREATE_BRANCHS}
+            />
+          }
         />
         <Route
           path="/profile"

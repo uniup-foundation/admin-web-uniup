@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import jwt_decode, { JwtPayload } from 'jwt-decode';
 import { useAuth } from './context/AuthContext';
+import { LOCAL_STORAGE } from './config';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,10 @@ function App() {
           token,
         );
         setPermissions(decoded.permissions);
+        localStorage.setItem(
+          LOCAL_STORAGE.PERMISSIONS_LIST,
+          JSON.stringify(decoded.permissions),
+        );
       }
     };
     getPermissions();
