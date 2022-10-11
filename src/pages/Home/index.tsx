@@ -1,6 +1,14 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LinkWithCheckedPermissions from '../../components/Global/LinkWithCheckedPermissions';
+import PermissionsList from '../../config/permissionsList';
+import withPermission from '../../hoc/withPermissions';
+
+const LinkListBranch = LinkWithCheckedPermissions(PermissionsList.READ_BRANCHS);
+const LinkCreateBranch = LinkWithCheckedPermissions(
+  PermissionsList.CREATE_BRANCHS,
+);
 
 export default function Home() {
   const { logout } = useAuth0();
@@ -8,8 +16,8 @@ export default function Home() {
     <div>
       <h1>Home</h1>
       <nav>
-        <Link to="/branchs">ListBranch</Link> |{' '}
-        <Link to="/branchs/new">Add Branch</Link>|{' '}
+        <LinkListBranch to="/branchs">ListBranch</LinkListBranch> |
+        <LinkCreateBranch to="/branchs/new">Add Branch</LinkCreateBranch> |
         <Link to="/profile">Profile</Link>
       </nav>
       <button
