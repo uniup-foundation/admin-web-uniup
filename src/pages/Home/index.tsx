@@ -1,9 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import LinkWithCheckedPermissions from '../../components/Global/LinkWithCheckedPermissions';
 import PermissionsList from '../../config/permissionsList';
-import withPermission from '../../hoc/withPermissions';
 
 const LinkListBranch = LinkWithCheckedPermissions(PermissionsList.READ_BRANCHS);
 const LinkCreateBranch = LinkWithCheckedPermissions(

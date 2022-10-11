@@ -1,7 +1,5 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { BASE_URL } from '../../../config';
+
 import useBranchsApi from '../../../hooks/useBranchApi';
 
 export default function ListBranch() {
