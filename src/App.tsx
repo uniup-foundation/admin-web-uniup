@@ -12,6 +12,8 @@ import { useAuth } from './context/AuthContext';
 import { LOCAL_STORAGE } from './config';
 
 const queryClient = new QueryClient();
+import SearchAppBar from './components/navbar';
+import ClippedDrawer from './components/menu';
 
 function App() {
   const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -43,7 +45,16 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Main />
+      <div>
+        <div>
+          <SearchAppBar />
+        </div>
+        <div>
+          <ClippedDrawer />
+        </div>
+        <Main />
+      </div>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
